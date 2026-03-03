@@ -1,0 +1,55 @@
+{
+    "music":[
+        {
+        "id": 1,
+        "Artista": "King Crimson",
+        "Album":"In The Court of the Crimson King",
+        "Release date": "1969",
+        "Music Name": "21th Century Schizoid Man"
+        },
+        
+        {
+            "id": 2,
+            "Artista": "King Crimson",
+            "Album":"In The Court of the Crimson King",
+            "Release date": "1969",
+            "Music Name": "I Talk To The Wind"
+        },
+        {
+            "id":3,
+            "Artista": "King Crimson",
+            "Album":"In The Court of the Crimson King",
+            "Release date": "1969",
+            "Music Name": "Epitaph"
+        },
+        {
+            "id": 4,
+            "Artista": "King Crimson",
+            "Album":"In The Court of the Crimson King",
+            "Release date": "1969",
+            "Music Name": "Moonchild"
+        },
+        {
+            "id": 5,
+            "Artista": "King Crimson",
+            "Album":"In The Court of the Crimson King",
+            "Release date": "1969",
+            "Music Name": "The Court Of The Crimson King"
+        },
+        {
+            "id": 6,
+            "Artista": "King Crimson",
+            "Album":"In The Court of the Crimson King",
+            "Release date": "1969",
+            "Music Name": "21th Century Schizoid Man (Radio Version)"
+            
+        },
+        {
+            "id": 7,
+            "Artista": "King Crimson",
+            "Album":"In The Court of the Crimson King",
+            "Release date": "1969",
+            "Music Name": "A Man A City (Live At The Fillmore West)"
+        }
+    ]
+}
