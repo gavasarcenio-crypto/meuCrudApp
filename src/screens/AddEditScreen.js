@@ -5,6 +5,19 @@ import styles from '../styles/Styles';
 import React from 'react';
 import { useEffect } from 'react';
 import { getMusicById } from '../services/MusicService';
+import { useFocusEffect } from '@react-navigation/native';
+
+export const addMusic = (music) => {
+    music.id = musics.length + 1; // Gera um novo ID
+    musics.push(music); // Adiciona à lista
+};
+
+export const updateMusic = (id, updatedMusic) => {
+    const index = musics.findIndex(music => music.id === id);
+    if (index !== -1) {
+        musics[index] = { ...musics[index], ...updatedMusic };
+    }
+};
 
 export default function AddEditScreen({ route, navigation }) {
     const music = route.params?.music;
@@ -15,14 +28,28 @@ export default function AddEditScreen({ route, navigation }) {
     const [art, setArt] = useState(music ? music.art : '');
     const [audio, setAudio] = useState(music ? music.audio : '');
 
+    useFocusEffect(
+        React.useCallback(() => {
+            loadMusics();
+        }, [])
+    );
+
     const handleSave = () => {
+        if (title.trim() === '' || artist.trim() === '' || album.trim() === '') {
+            alert('Por favor, preencha todos os campos obrigatórios.');
+            return;
+        }
+
         if (music) {
+            // Atualizar música existente
             updateMusic(music.id, { title, artist, album, release, art, audio });
         } else {
+            // Adicionar nova música
             addMusic({ title, artist, album, release, art, audio });
         }
-        navigation.goBack();
-    }
+
+        navigation.goBack(); // Retorna para a tela anterior
+    };
 
     return (
         <View style={styles.container}>
