@@ -1,33 +1,33 @@
 {
     "music":[
         {
-        "musicId": 1,
+        "id": 1,
         "artist": "King Crimson",
         "Album":"In The Court of the Crimson King",
         "release": "1969",
         "title": "21th Century Schizoid Man",
         "audio": "../musicassets/audio/21th Century Schizoid Man.mp3",
-        "art": "../musicassets/images/in_the_court_of_the_crimsonn_king.jpg"
+        "art": "../musicassets/art/in_the_court_of_the_crimsonn_king.jpg"
         },
         
         {
-            "musicId": 2,
+            "id": 2,
             "artist": "King Crimson",
             "album":"In The Court of the Crimson King",
             "release": "1969",
             "title": "I Talk To The Wind",
             "audio": "../musicassets/audio/I Talk To The Wind.mp3",
-            "art": "../musicassets/images/in_the_court_of_the_crimsonn_king.jpg"
+            "art": "../musicassets/art/in_the_court_of_the_crimsonn_king.jpg"
 
         },
         {
-            "musicId":3,
+            "id":3,
             "artist": "King Crimson",
             "album":"In The Court of the Crimson King",
             "release": "1969",
             "title": "Epitaph",
             "audio": "../musicassets/audio/Epitaph.mp3",
-            "art": "../musicassets/images/in_the_court_of_the_crimsonn_king.jpg"
+            "art": "../musicassets/art/in_the_court_of_the_crimsonn_king.jpg"
         }
     ]
 }

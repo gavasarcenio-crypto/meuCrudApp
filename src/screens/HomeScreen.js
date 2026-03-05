@@ -2,6 +2,7 @@ import {View, Text, FlatList, StyleSheet, Button} from 'react-native';
 import {useEffect, useState} from 'react';
 import MusicItem from '../components/MusicItem';
 import {getMusics, deleteMusic} from '../services/MusicService';
+import styles from '../styles/Styles';
 
 export default function HomeScreen({ navigation }) {
     const [musics, setMusics] = useState([]);
@@ -27,7 +28,9 @@ export default function HomeScreen({ navigation }) {
                 data={musics}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => (
-                    <MusicItem music={item} onEdit={(music) => navigation.navigate('EditMusic', { music })} onDelete={handleDelete} />
+                    <MusicItem music={item} 
+                    onEdit={(music) => navigation.navigate('EditMusic', { music })} 
+                    onDelete={handleDelete} />
                 )}
             />
         </View>

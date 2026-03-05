@@ -1,12 +1,13 @@
 import {View, Text, StyleSheet, Button} from 'react-native';
 import { getMusicById, deleteMusic } from '../services/MusicService';
+import styles from '../styles/Styles';
 
 export default function MusicScreen({ route, navigation }) {
-    const { musicId } = route.params;
-    const music = getMusicById(musicId);
+    const { id } = route.params;
+    const music = getMusicById(id);
 
     const handleDelete = () => {
-        deleteMusic(musicId);
+        deleteMusic(id);
         navigation.goBack();
     }
 

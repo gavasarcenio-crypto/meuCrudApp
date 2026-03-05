@@ -2,8 +2,9 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "./src/screens/HomeScreen";
-import MusicScreen from "./scr/screens/MusicScreen";
+import MusicScreen from "./src/screens/MusicScreen";
 import AddEditScreen from "./src/screens/AddEditScreen";
+import Styles from "./src/styles/Styles";
 
 const Stack = createStackNavigator();
 

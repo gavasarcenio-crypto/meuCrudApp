@@ -1,6 +1,6 @@
 import data from '../data/music.json';
 
-    let musics = data.musics;
+    let musics = data.music;
 
     export const getMusics = () => {
         return musics;

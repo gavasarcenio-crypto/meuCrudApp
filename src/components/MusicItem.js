@@ -1,4 +1,5 @@
 import {Text, View, TouchableOpacity, StyleSheet, Image} from 'react-native';
+import styles from '../styles/Styles';
 
 export default function MusicItem({ music, onEdit, onDelete }) {
     return (
