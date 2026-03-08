@@ -1,24 +1,53 @@
-import {View, Text, StyleSheet, Button} from 'react-native';
-import { getMusicById, deleteMusic } from '../services/MusicService';
+import React, { useState, useEffect } from 'react';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { getMusic } from '../services/MusicService';
+import MusicItem from '../components/MusicItem';
 import styles from '../styles/Styles';
 
-export default function MusicScreen({ route, navigation }) {
-    const { id } = route.params;
-    const music = getMusicById(id);
+export default function MusicScreen({ navigation }) {
+  const [musicList, setMusicList] = useState([]);
+    useEffect(() => {  
+        loadMusic();
+    }, []);
 
-    const handleDelete = () => {
-        deleteMusic(id);
-        navigation.goBack();
-    }
-
+    const loadMusic = async () => {
+        try {
+            const data = await getMusic();
+            setMusicList(data);
+        } catch (error) {
+            console.error("Error loading music:", error);
+        }
+    };
+    
+    const ListHeaderComponent = () => (
+        <View style={{ marginBottom: 20 }}>
+            <Text style={[styles.homeTitle, { marginTop: 8 }]}>🎵 Suas Músicas</Text>
+            <Text style={[styles.homeSubtitle, { marginBottom: 0 }]}>
+                {musicList.length} música{musicList.length !== 1 ? 's' : ''}
+            </Text>
+        </View>
+    );
+    
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>{music.title}</Text>
-            <Text style={styles.artist}>{music.artist}</Text>
-            <Text style={styles.album}>{music.album}</Text>
-            <Text style={styles.release}>{music.release}</Text>
-            <Button title="Edit" onPress={() => navigation.navigate('EditMusic', { music })} />
-            <Button title="Delete" onPress={handleDelete} color="red" />
+            <FlatList
+                data={musicList}
+                keyExtractor={(item) => item.id.toString()}
+                renderItem={({ item }) => <MusicItem item={item} navigation={navigation} />}
+                ListHeaderComponent={ListHeaderComponent}
+                ListEmptyComponent={
+                    <View style={[styles.centerContent, { marginTop: 100 }]}>
+                        <Text style={styles.homeSubtitle}>Nenhuma música adicionada ainda</Text>
+                        <TouchableOpacity 
+                            style={[styles.button, { marginTop: 20 }]}
+                            onPress={() => navigation.navigate('AddMusic')}
+                        >
+                            <Text style={styles.buttonText}>+ Adicionar Primeira Música</Text>
+                        </TouchableOpacity>
+                    </View>
+                }
+                scrollEnabled={true}
+            />
         </View>
     );
 }

@@ -1,38 +1,24 @@
-import {View, Text, FlatList, StyleSheet, Button} from 'react-native';
-import {useEffect, useState} from 'react';
-import MusicItem from '../components/MusicItem';
-import {getMusics, deleteMusic} from '../services/MusicService';
+import React from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
 import styles from '../styles/Styles';
 
 export default function HomeScreen({ navigation }) {
-    const [musics, setMusics] = useState([]);
-
-    useEffect(() => {
-        loadMusics();
-    }, []);
-
-    const loadMusics = () => {
-        const data = getMusics();
-        setMusics(data);
-    }
-
-    const handleDelete = (id) => {
-        deleteMusic(id);
-        loadMusics();
-    }
-
     return (
-        <View style={styles.container}>
-            <Button title="Add Music" onPress={() => navigation.navigate('AddMusic')} />
-            <FlatList
-                data={musics}
-                keyExtractor={(item) => item.id.toString()}
-                renderItem={({ item }) => (
-                    <MusicItem music={item} 
-                    onEdit={(music) => navigation.navigate('EditMusic', { music })} 
-                    onDelete={handleDelete} />
-                )}
-            />
+        <View style={styles.homeContainer}>
+            <Text style={styles.homeTitle}>Bem-vindo ao Music Manager</Text>
+            <Text style={styles.homeSubtitle}>Gerencie sua coleção de músicas facilmente</Text>
+            <TouchableOpacity
+                style={styles.button}
+                onPress={() => navigation.navigate('Music')}
+            >
+                <Text style={styles.buttonText}>Ver Músicas</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={styles.button}
+                onPress={() => navigation.navigate('AddMusic')}
+            >
+                <Text style={styles.buttonText}>Adicionar Música</Text>
+            </TouchableOpacity>
         </View>
     );
 }

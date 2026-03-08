@@ -1,28 +1,53 @@
-import data from '../data/music.json';
+const API = "https://192.168.15.7:3000/music";
 
-    let musics = data.music;
-
-    export const getMusics = () => {
-        return musics;
+export const getMusic = async () => {     
+  try {
+    const response = await fetch(API);
+    return response.json();
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
     }
-
-    export const getMusicById = (id) => {
-        return musics.find(music => music.id === id);
-    }
-
-    export const addMusic = (music) => {
-        music.id = musics.length + 1;
-        musics.push(music);
-    }
-
-    export const updateMusic = (id, updatedMusic) => { 
-        const index = musics.findIndex(music => music.id === id);
-        if (index !== -1) {
-            musics[index] = { ...musics[index], ...updatedMusic };
-        }
-    }
-    
-    export const deleteMusic = (id) => {
-        musics = musics.filter(music => music.id !== id);
-    }
-    
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching music:", error);
+    throw error;
+  }
+};
+export const addMusic = async (music) => {
+  try {
+    return fetch(API, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(music)
+    });
+  } catch (error) {
+    console.error("Error adding music:", error);
+    throw error;
+  }
+};
+export const updateMusic = async (id, music) => {
+  try {
+    return fetch(`${API}/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(music)
+    });
+  } catch (error) {
+    console.error("Error updating music:", error);
+    throw error;
+  }
+};
+export const deleteMusic = async (id) => {
+  try {
+    return fetch(`${API}/${id}`, {
+        method: "DELETE"
+    });
+  } catch (error) {    console.error("Error deleting music:", error);
+    throw error;
+  }};
+  

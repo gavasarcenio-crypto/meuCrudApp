@@ -1,24 +1,35 @@
-import {Text, View, TouchableOpacity, StyleSheet, Image} from 'react-native';
-import styles from '../styles/Styles';
+import React from "react";
+import { View, Text, TouchableOpacity, Image } from "react-native";
+import { Audio } from "expo-av";
+import styles from "../styles/Styles";
 
-export default function MusicItem({ music, onEdit, onDelete }) {
+export default function MusicItem({ item, navigation }) {
+    const playMusic = async () => {
+        try {
+            const { sound } = await 
+            Audio.Sound.createAsync(
+                { uri: item.url },
+                { shouldPlay: true }
+            );
+        } catch (error) {
+            console.error("Erro ao tocar musica:", error);
+        }
+    };
+
     return (
-        <View style={styles.itemContainer}>
-            <Text style={styles.title}>{music.title}</Text>
-            <Text style={styles.artist}>{music.artist}</Text>
-            <View style={styles.buttonsContainer}>
-                <TouchableOpacity onPress={() => onEdit(music)} style={styles.editButton}>
-                    <Text style={styles.buttonText}>Edit</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => onDelete(music.id)} style={styles.deleteButton}>
-                    <Text style={styles.buttonText}>Delete</Text>
-                </TouchableOpacity>
-                <Image source={{ uri: music.art }} style={styles.art} />
+        <View style={styles.card}>
+            <Image
+                source={{uri : item.art}}
+                style={styles.musicArt}
+            />
+            <Text style={styles.title}>{item.title}</Text>
+            <Text style={styles.artist}>{item.artist}</Text>
+            <Text style={styles.album}>{item.album} ({item.release})
+            </Text>
+            <TouchableOpacity style={styles.button} onPress={playMusic}>
+                <Text style={styles.buttonText}>▶ Tocar</Text>
+            </TouchableOpacity>
 
-            </View>
-            <View style={styles.musicartist}>
-                <Text style={styles.album}>{music.album}</Text>
-            </View>
         </View>
     );
 }
