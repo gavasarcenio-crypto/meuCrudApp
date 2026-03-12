@@ -11,3 +11,5 @@ npx expo install expo-audio
 
 npm install -g json-server
 npx json-server --watch src/data/music.json --port 3000
+
+npm expo start --tunnel
