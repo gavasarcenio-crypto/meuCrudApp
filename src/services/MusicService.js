@@ -1,20 +1,10 @@
-const API = "https://192.168.15.7:3000/music";
 
-export const getMusic = async () => {     
-  try {
-    const response = await fetch(API);
-    return response.json();
-    if (!response.ok) {
-const API = "https://192.168.15.7:3000/music";
+const API = "https://musicapi123123.loca.lt";
 
 export const getMusic = async () => {
   try {
 
     const response = await fetch(API);
-
-    if (!response.ok) {
-      throw new Error(`Error: ${response.status}`);
-    }
 
     const data = await response.json();
 
@@ -92,11 +82,3 @@ export const deleteMusic = async (id) => {
   }
 
 };
-y {
-    return fetch(`${API}/${id}`, {
-        method: "DELETE"
-    });
-  } catch (error) {    console.error("Error deleting music:", error);
-    throw error;
-  }};
-  

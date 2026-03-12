@@ -1,16 +1,16 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import { Audio } from "expo-av";
+import { Audio } from "expo-audio";
 import styles from "../styles/Styles";
 
 export default function MusicItem({ item, navigation }) {
-    const playMusic = async () => {
+    const playMusic = async (url) => {
         try {
             const { sound } = await 
             Audio.Sound.createAsync(
-                { uri: item.url },
-                { shouldPlay: true }
+                { uri: url }
             );
+            await sound.playAsync();
         } catch (error) {
             console.error("Erro ao tocar musica:", error);
         }
